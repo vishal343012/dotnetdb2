@@ -1,0 +1,238 @@
+﻿@using Backend.Models
+@{
+    ViewBag.Title = "Create page";
+    var packageId = ViewBag.PackageId;
+
+
+    var Package = new PackageDetailEnt();
+    if (packageId != null && packageId !=0)
+    {
+        Package = NHIndiaAdminPanel.Controllers.PackageController.GetPackage(packageId);
+        
+        // handal error
+        if (Package==null)
+        {
+            <script type="text/javascript">
+                alert('Sorrry somthing went wrong!');
+                window.location.href = '@Url.Action("Error", "Home")';
+            </script>
+            return;
+        }
+    }
+}
+
+<div id="main-wrapper">
+    <div class="">
+        @if (Package.PackageId != null && packageId != 0)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills" role="tablist" id="Packagetabl">
+                        <li role="presentation" class="active"><a href="/Package/Create?PackageId=@Package.PackageId">Basic Details</a></li>
+                        <li role="presentation" class=""><a href="/Package/Description?PackageId=@Package.PackageId">Description</a></li>
+                        <li role="presentation" class=""><a href="/Package/CityMap?PackageId=@Package.PackageId">City Map</a></li>
+                        <li role="presentation" class=""><a href="/Package/Inclusion?PackageId=@Package.PackageId">Inclusion</a></li>
+                        <li role="presentation" class=""><a href="/Package/Price?PackageId=@Package.PackageId">Price</a></li>
+                        <li role="presentation" class=""><a href="/Package/Images?PackageId=@Package.PackageId">Images</a></li>
+                    </ul>
+                    <br>
+                </div>
+            </div>
+        }
+        <div class="page-title">
+            <h3 class="breadcrumb-header">@((ViewBag.PackageId == null) ? "Create Package" : "Update Package")</h3>
+        </div>
+
+        @using (Html.BeginForm("SavePackageDetails", "Package", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-9 m-b-lg" id="scrollhere">
+                    <label>Package Name</label>
+                    <input class="form-control" value="@Package.PackageName" name="PackageName" placeholder="Package Name" required />
+                    <input type="hidden" value="@Package.PackageId" name="PackageId" />
+                </div>
+
+                <div class="col-md-3 m-b-lg">
+                    <label for="packageTypeSelect">Package Type</label>
+                    <select class="form-control" id="packageTypeSelect" name="TypeId">
+                        <option value="0">Select Package Type</option>
+                        @foreach (var packageType in ViewBag.PackageTypes)
+                        {
+                            <option value="@packageType.PackageTypeId" selected="@((packageType.PackageTypeId==Package.TypeId) ? "selected": null)">@packageType.PackageTypeName</option>
+                            
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3 m-b-lg">
+                    <label>Is Flight Included</label>
+                    <select class="form-control" name="IsFlightIncluded">
+                        <option value="0" selected="@(Package.IsFlightIncluded == 0 ? "selected" : null)">No</option>
+                        <option value="1" selected="@(Package.IsFlightIncluded == 1 ? "selected" : null)">Yes</option>
+                    </select>
+                </div>
+                <div class="col-md-3 m-b-lg">
+                    <label>Is Hotel Included</label>
+                    <select class="form-control" name="IsHotelIncluded">
+                        <option value="0" selected="@(Package.IsTransferIncluded == 0 ? "selected" : null)">No</option>
+                        <option value="1" selected="@(Package.IsTransferIncluded ==1 ? "selected" : null)">Yes</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-3 m-b-lg">
+                    <label>Is Transfer Included</label>
+                    <select class="form-control" name="IsTransferIncluded">
+                        <option value="0" selected="@(Package.IsFlightIncluded == 0 ? "selected" : null)">No</option>
+                        <option value="1" selected="@(Package.IsHotelIncluded ==1 ? "selected" : null)">Yes</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-3 m-b-lg">
+                    <label>Is Sold Out</label>
+                    <select class="form-control" name="IsSoldOut">
+                        <option value="0" selected="@(Package.IsSoldOut == 0 ? "selected" : null)">No</option>
+                        <option value="1" selected="@(Package.IsSoldOut == 1 ? "selected" : null)">Yes</option>
+                    </select>
+                </div>
+
+                
+                <div class="col-md-3 m-b-lg">
+                    <label>Cancellation Policy</label>
+                    <select class="form-control" name="CancellationPolicyId">
+                        <option value="0">Select Cancellation Policy</option>
+                        @foreach (var policy in ViewBag.CancellationPolicies)
+                        {
+                            <option value="@policy.CancellationPolicyId" selected="@((policy.CancellationPolicyId == Package.CancellationPolicyId) ? "selected" : null)">@policy.CancellationPolicyName</option>
+
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3 m-b-lg">
+                    <label>Dynamic Packages</label>
+                    <select class="form-control" id="dynamicPackageSelect" name="IsDynamicPackage">
+                        <option value="0" selected="@(Package.IsDynamicPackage == 0 ? "selected" : null)">No</option>
+                        <option value="1" selected="@(Package.IsDynamicPackage == 1 ? "selected" : null)">Yes</option>
+                    </select>
+                </div>
+
+
+
+                <div class="col-md-3 m-b-lg">
+                    <label>Nights</label>
+                    <input class="form-control" name="Nights" id="nightsInput" value="@Package.Nights" placeholder="No. Of Nights" @(Package.IsDynamicPackage == 0 ? "disabled" : "") />
+                    
+                </div>
+
+                <div class="col-md-3" @(Package.PackageId == 0 ? "style=display:none;" : "")>
+                    <label>Slug</label>
+                    <input class="form-control" name="Slug" value="@Package.Slug" placeholder="Slug" />
+                </div>
+
+                <div class="col-md-12 m-b-lg">
+                    <label>Short Description</label>
+                    <textarea id="shortdescription" name="ShortDescription" required style="height: 200px; width: 99%;">@Package.ShortDescription</textarea>
+                </div>
+                <div class="col-md-12 m-b-lg">
+                    <label>Terms & Condition</label>
+                    <textarea id="termscondition" name="Tnc" required style="height: 200px; width: 99%;">@Package.Tnc</textarea>
+                </div>
+
+
+                <div class="col-md-12 ">
+                    <div id="uploadForm">
+
+                        <label class="breadcrumb-header">Upload Package Inclusion</label>
+                        <!-- Add the accept attribute to restrict to PDF files -->
+                        <input type="file" id="pdfFileInput" accept=".pdf" />
+                        <input type="hidden" id="pdfpath" value="@Package.InclusionPdf" name="InclusionPdf" />
+                        @if (!string.IsNullOrEmpty(Package.InclusionPdf))
+                        {
+                            <p id="pdfMsg" style="font-size: 12px; ">Package Inclusion already Uploaded.</p>
+                        }
+                        else
+                        {
+                            <p id="pdfMsg" style="font-size: 12px; ">Please select package Inclusion.</p>
+                        }
+
+                        <br />
+
+                    </div>
+                </div>
+
+                <div class="col-md-3 m-b-lg">
+                    <button type="submit" class="btn btn-primary" id="submitButton">Save</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        var message = "@TempData["Message"]";
+        if (message) {
+            alert(message);
+            "@TempData.Remove("Message")";
+        }
+
+        $(document).ready(function () {
+            $('#dynamicPackageSelect').change(function () {
+                var dynamicPackageValue = $(this).val();
+                var nightsInput = $('#nightsInput');
+                nightsInput.prop('disabled', dynamicPackageValue === '0');
+            });
+
+            // AJAX call to handle PDF upload
+            $('#pdfFileInput').change(function () {
+                var fileInput = document.getElementById('pdfFileInput');
+                var file = fileInput.files[0];
+                var formData = new FormData();
+                formData.append('pdfFile', file);
+                formData.append('packageId', @ViewBag.PackageId);  
+
+                $('#pdfMsg').text('Please wait...').css('color', 'blue');
+
+                $.ajax({
+                    url: '/Package/UploadPdfs',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        // Before sending the request, show "Please wait.." message
+                        $('#pdfMsg').text('Please wait..').css('color', 'blue');
+                    },
+                    success: function (response) {
+                        // Delay for 2 seconds
+                        setTimeout(function () {
+                            // Handle success response after delay
+                            console.log(response);
+                            if (response.status === 1) {
+                                var pdfPath = "https://d5ohkitzini5f.cloudfront.net/" + response.message.split('~')[1];
+                                $('#pdfpath').val(pdfPath);
+                                $('#pdfMsg').text('File Uploaded Successfully!').css('color', 'green');
+                            } else if (response.status == 0) {
+                                $('#pdfMsg').text("Something went wrong please try again!").css('color', 'red');
+                            } else {
+                                $('#pdfMsg').text("Something went wrong please try after some time!").css('color', 'red');
+                            }
+                        }, 2000); // 2 seconds delay
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error response
+                        $('#pdfpath').text('Something went wrong please try after some time!');
+                    }
+                });
+
+                
+            });
+
+        });
+    </script>
+}
+

@@ -1,0 +1,72 @@
+﻿@* @{
+    ViewData["Title"] = "Package Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome package index</h1>
+    <a class="btn btn-primary" href="@Url.Action("Create", "Package")">Create Package</a>
+</div>
+ *@
+
+
+
+
+
+@{
+    ViewData["Title"] = "Package Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome package index</h1>
+    <button id="createPackageBtn" class="btn btn-primary">Create Package</button>
+    <button id="packageTypeBtn" class="btn btn-primary">Package Type</button>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Find the button by its ID
+            var createPackageBtn = document.getElementById("createPackageBtn");
+            var packageTypeBtn = document.getElementById("packageTypeBtn");
+            // Add a click event listener to the button
+            createPackageBtn.addEventListener("click", function (event) {
+                // Prevent the default behavior (page reload)
+                event.preventDefault();
+
+                // Perform your desired action here
+                // For example, make an AJAX request to the server
+                // Example:
+                // fetch('/Package/Create', { method: 'POST', body: JSON.stringify(data) })
+                //    .then(response => {
+                //        // Handle response
+                //    })
+                //    .catch(error => {
+                //        // Handle error
+                //    });
+
+                // For now, let's simply navigate to the 'Create' page
+                window.location.href = '@Url.Action("Create", "Package")';
+            });
+
+
+            packageTypeBtn.addEventListener("click", function (event) {
+                // Prevent the default behavior (page reload)
+                event.preventDefault();
+
+                // Perform your desired action here
+                // For example, make an AJAX request to the server
+                // Example:
+                // fetch('/Package/Create', { method: 'POST', body: JSON.stringify(data) })
+                //    .then(response => {
+                //        // Handle response
+                //    })
+                //    .catch(error => {
+                //        // Handle error
+                //    });
+
+                // For now, let's simply navigate to the 'Create' page
+                window.location.href = '@Url.Action("PackageType", "Package")';
+            });
+        });
+    </script>
+}

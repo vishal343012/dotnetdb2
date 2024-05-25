@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\NextHolidaysIndia\\AdminPanel\\NHIndiaAdmin\\NHIndiaAdminPanel\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{541F03F8-1352-4FE1-925B-860C2B7BB26B}|NHIndiaAdminPanel\\NHIndiaAdminPanel.csproj|f:\\nextholidaysindia\\adminpanel\\nhindiaadmin\\nhindiaadminpanel\\nhindiaadminpanel\\models\\activitiesextramodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{541F03F8-1352-4FE1-925B-860C2B7BB26B}|NHIndiaAdminPanel\\NHIndiaAdminPanel.csproj|solutionrelative:nhindiaadminpanel\\models\\activitiesextramodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{541F03F8-1352-4FE1-925B-860C2B7BB26B}|NHIndiaAdminPanel\\NHIndiaAdminPanel.csproj|f:\\nextholidaysindia\\adminpanel\\nhindiaadmin\\nhindiaadminpanel\\nhindiaadminpanel\\controllers\\packagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{541F03F8-1352-4FE1-925B-860C2B7BB26B}|NHIndiaAdminPanel\\NHIndiaAdminPanel.csproj|solutionrelative:nhindiaadminpanel\\controllers\\packagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{541F03F8-1352-4FE1-925B-860C2B7BB26B}|NHIndiaAdminPanel\\NHIndiaAdminPanel.csproj|f:\\nextholidaysindia\\adminpanel\\nhindiaadmin\\nhindiaadminpanel\\nhindiaadminpanel\\jitbit.utils\\dbutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{541F03F8-1352-4FE1-925B-860C2B7BB26B}|NHIndiaAdminPanel\\NHIndiaAdminPanel.csproj|solutionrelative:nhindiaadminpanel\\jitbit.utils\\dbutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ActivitiesExtraModel.cs",
+              "DocumentMoniker": "F:\\NextHolidaysIndia\\AdminPanel\\NHIndiaAdmin\\NHIndiaAdminPanel\\NHIndiaAdminPanel\\Models\\ActivitiesExtraModel.cs",
+              "RelativeDocumentMoniker": "NHIndiaAdminPanel\\Models\\ActivitiesExtraModel.cs",
+              "ToolTip": "F:\\NextHolidaysIndia\\AdminPanel\\NHIndiaAdmin\\NHIndiaAdminPanel\\NHIndiaAdminPanel\\Models\\ActivitiesExtraModel.cs",
+              "RelativeToolTip": "NHIndiaAdminPanel\\Models\\ActivitiesExtraModel.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAQwAoAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-23T07:51:44.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DBUtils.cs",
+              "DocumentMoniker": "F:\\NextHolidaysIndia\\AdminPanel\\NHIndiaAdmin\\NHIndiaAdminPanel\\NHIndiaAdminPanel\\Jitbit.Utils\\DBUtils.cs",
+              "RelativeDocumentMoniker": "NHIndiaAdminPanel\\Jitbit.Utils\\DBUtils.cs",
+              "ToolTip": "F:\\NextHolidaysIndia\\AdminPanel\\NHIndiaAdmin\\NHIndiaAdminPanel\\NHIndiaAdminPanel\\Jitbit.Utils\\DBUtils.cs",
+              "RelativeToolTip": "NHIndiaAdminPanel\\Jitbit.Utils\\DBUtils.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAcwA0AAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T07:37:20.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PackageController.cs",
+              "DocumentMoniker": "F:\\NextHolidaysIndia\\AdminPanel\\NHIndiaAdmin\\NHIndiaAdminPanel\\NHIndiaAdminPanel\\Controllers\\PackageController.cs",
+              "RelativeDocumentMoniker": "NHIndiaAdminPanel\\Controllers\\PackageController.cs",
+              "ToolTip": "F:\\NextHolidaysIndia\\AdminPanel\\NHIndiaAdmin\\NHIndiaAdminPanel\\NHIndiaAdminPanel\\Controllers\\PackageController.cs",
+              "RelativeToolTip": "NHIndiaAdminPanel\\Controllers\\PackageController.cs",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAAwKQAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T10:18:34.117Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

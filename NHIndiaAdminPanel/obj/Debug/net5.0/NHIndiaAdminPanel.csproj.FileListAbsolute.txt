@@ -1,0 +1,8 @@
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net5.0\NHIndiaAdminPanel.GeneratedMSBuildEditorConfig.editorconfig
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net5.0\NHIndiaAdminPanel.AssemblyInfoInputs.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net5.0\NHIndiaAdminPanel.AssemblyInfo.cs
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net5.0\NHIndiaAdminPanel.csproj.CoreCompileInputs.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net5.0\NHIndiaAdminPanel.MvcApplicationPartsAssemblyInfo.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net5.0\NHIndiaAdminPanel.RazorAssemblyInfo.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net5.0\NHIndiaAdminPanel.RazorAssemblyInfo.cs
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net5.0\NHIndiaAdminPanel.csproj.AssemblyReference.cache

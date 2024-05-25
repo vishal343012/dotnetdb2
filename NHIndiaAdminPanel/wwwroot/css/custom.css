@@ -1,0 +1,13 @@
+/* Write your custom CSS here */
+
+#tourtabl li {
+    background: #fff;
+}
+    #tourtabl li a {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+        
+        border-radius: 0px !important;
+        min-width: 125px;
+        text-align: center;
+    }

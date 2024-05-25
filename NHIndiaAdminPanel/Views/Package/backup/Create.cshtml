@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Create page";
+}
+
+<div class="container" ng-app="App" ng-controller="Controller">
+    <h2>Create Package</h2>
+    <form id="createForm" ng-submit="submitForm()">
+        <div class="form-group">
+            <label for="packageName">Package Name:</label>
+            <input type="text" class="form-control" id="packageName" ng-model="package.PackageName" name="packageName" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" ng-model="package.Description" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" class="form-control" id="price" ng-model="package.Price" name="price" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-5">Create</button>
+    </form>
+</div>
+
+
+
+<script src="~/js/site.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<script>
+    var app = angular.module("App", []);
+    app.controller("Controller", ["$scope", function ($scope) {
+        $scope.submitForm = function () {
+            debugger;
+            var package = {
+                PackageName: $('#packageName').val(),
+                Description: $('#description').val(),
+                Price: $('#price').val()
+            };
+             
+            var d = AjaxCallPost('/Package/CreatePackage', package);
+            console.log(d);
+             
+            resetForm();
+        };
+
+        function resetForm() {
+            $('#packageName').val('');
+            $('#description').val('');
+            $('#price').val('');
+        }
+    }]);
+</script>
+
+

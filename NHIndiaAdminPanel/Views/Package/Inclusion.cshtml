@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Inclusion";
+    var packageId = ViewBag.PackageId;
+    var packageInclusions = ViewBag.PackageInclusions as List<PackageInclusionEnt>;
+}
+
+<div>
+    <div class="">
+        @if (packageId != 0 && packageInclusions != null && packageInclusions.Any())
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills" role="tablist" id="Packagetabl">
+                        <li role="presentation" class=""><a href="/Package/Create?PackageId=@packageId">Basic Details</a></li>
+                        <li role="presentation" class=""><a href="/Package/Description?PackageId=@packageId">Description</a></li>
+                        <li role="presentation" class=""><a href="/Package/CityMap?PackageId=@packageId">City Map</a></li>
+                        <li role="presentation" class="active"><a href="/Package/Inclusion?PackageId=@packageId">Inclusion</a></li>
+                        <li role="presentation" class=""><a href="/Package/Price?PackageId=@packageId">Price</a></li>
+                        <li role="presentation" class=""><a href="/Package/Images?PackageId=@packageId">Images</a></li>
+                    </ul>
+                    <br>
+                </div>
+            </div>
+        }
+        <div class="page-title">
+            <h3 class="breadcrumb-header">Inclusion</h3>
+        </div>
+
+        <div class="row">
+            @foreach (var inclusion in packageInclusions)
+            {
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 m-t-md">
+                            <b id="day-@inclusion.Day">Day @inclusion.Day</b>
+                        </div>
+                        <div class="col-md-12 m-t-md m-b-md">
+                            <label>Title</label>
+                            <input id="title-@inclusion.Day" class="form-control" placeholder="Title" value="@inclusion.Title" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <textarea style="height: 200px; width: 100%;" id="customdescription-@inclusion.Day">@inclusion.Description</textarea>
+                    </div>
+                </div>
+            }
+
+            <div class="col-md-3">
+                <button class="btn btn-primary" onclick="Save()">Save</button>
+            </div>
+        </div><!-- Row -->
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+        // var message = "@TempData["Message"]";
+        // if (message) {
+        //     debugger;
+        //     alert(message);
+        //     "@TempData.Remove("Message")";
+        //     closef();
+        // }
+
+
+        function Save() {
+            debugger;
+            var inclusions = [];
+
+            @foreach (var inclusion in packageInclusions)
+            {
+                <text>
+                    var title = document.getElementById('title-@inclusion.Day').value;
+                    var description = document.getElementById('customdescription-@inclusion.Day').value;
+
+                    // Push inclusion data to the array
+                    inclusions.push({
+                        InclusionId: @inclusion.InclusionId,
+                        Day: @inclusion.Day,
+                        Title: title,
+                        Description: description,
+                        PackageId: @packageId
+                            });
+                </text>
+            }
+
+            // Send the inclusion data to the server
+            $.ajax({
+                url: "/Package/SavePackageInclusion",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json", 
+                data: JSON.stringify(inclusions),
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                    } 
+                    else
+                    {
+                        alert("Failed to save Package Inclusion: " + response.message);
+                    }
+                },
+                error: function (xhr, status, error) 
+                {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+
+
+    </script>
+}

@@ -1,0 +1,678 @@
+﻿@{
+    ViewBag.Title = "List";
+    var PackageTypes = ViewBag.PackageTypes;
+    var CountryList = ViewBag.CountryList;
+}
+<style>
+    
+    #pageNext, #pagePre
+    {
+        display:none;
+    }
+
+    
+</style
+
+    <div id="main-wrapper">
+        <div class="">
+
+            <div class="page-title">
+                <h3 class="breadcrumb-header">List</h3>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Search Text</label>
+                    <input type="text" class="form-control" name="SearchText" id="search_text" />
+                </div>
+
+                <div class="col-md-2">
+                    <label>Country</label>
+                    <select class="form-control" id="country" name="CountryId">
+                        <option value="0">Select Country</option>
+                        @foreach (var country in ViewBag.CountryList)
+                        {
+                            <option value="@country.ID">@country.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label>City</label>
+                    <select class="form-control" id="city" name="CityId">
+                        <option value="0">Select City</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label>Package Type</label>
+                    <select class="form-control" id="packageType" name="PackageType">
+                        <option value="0">Select Package Type</option>
+                        @foreach (var packageType in PackageTypes)
+                        {
+                            <option value="@packageType.PackageTypeId">@packageType.PackageTypeName</option>
+
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-1">
+                    <br />
+                    <button class="btn btn-primary" onclick="Search()" type="submit">Search</button>
+                </div>
+                <div class="col-md-1">
+                    <br />
+                    <a class="btn btn-primary" href="/Package/Create" target="_blank">Create+</a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Package Id</th>
+                                <th>Package Name</th>
+                                <th>Country</th>
+                                <th>City</th>
+                                <th>Package Type</th>
+                                <th>Status</th>
+                                <th>Supplier</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="PackageListContainer">
+                                
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    Page Size:
+                                    <select name="PageSize" id="pageSize">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    Page:
+                                    <select name="PageId" id="pageNo">
+                                        <option value="1">1</option>
+                                           
+                                    </select>
+
+                                    <a class="btn btn-primary" id="pagePre" name="PageId" onclick="goBack()" type="submit"> &lt; Back </a>
+                                    <a class="btn btn-primary btn-primary-next" id="pageNext" onclick="goNext()" type="submit">Next &gt;</a>
+
+                                        
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div><!-- Row -->
+        </div>
+    </div>
+
+@section scripts 
+{
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+        
+        var totlePage = 0;
+        var selectedPageSize = 10;
+        var selectedPageNo = 1;
+        var searchText = "";
+        var selectedCountry = 0;
+        var selectdCity = 0;
+        var selectedPackageType = 0;
+
+
+        const data = {
+            SearchText: searchText,
+            CountryId: selectedCountry,
+            CityId: selectdCity,
+            PackageType: selectedPackageType,
+            PageSize: selectedPageSize,
+            PageId: selectedPageNo
+        };
+
+        /* get data on page load */
+        getPackage(data).then(result => {
+
+            generatePackageList(result.packages);
+            totlePage = result.totalPage;
+            generatePageOptions(result.totalPage);
+
+            if(selectedPageNo==totlePage)
+            {
+                togglePageButtons(true, false);
+            }
+            if(selectedPageNo==1 && selectedPageNo !=totlePage)
+            {
+                togglePageButtons(false, true);
+            }
+            if(selectedPageNo==1 && selectedPageNo ==totlePage)
+            {
+                togglePageButtons(false, false);
+            }
+
+        });
+
+
+        function goBack() 
+        {
+            selectedPageNo = selectedPageNo - 1;
+            document.getElementById('pageNo').value = selectedPageNo;
+
+
+            if(selectedPageNo==totlePage)
+            {
+                togglePageButtons(true, false);
+            }
+            if(selectedPageNo==1 && selectedPageNo !=totlePage)
+            {
+                togglePageButtons(false, true);
+            }
+            if(selectedPageNo==1 && selectedPageNo ==totlePage)
+            {
+                togglePageButtons(false, false);
+            }
+            if(selectedPageNo > 1 && selectedPageNo < totlePage)
+            {
+                togglePageButtons(true, true);
+            }
+
+            searchText = document.getElementById('search_text').value;
+            selectedCountry = parseInt(document.getElementById('country').value);
+            selectedCity = parseInt(document.getElementById('city').value);
+            selectedPackageType = parseInt(document.getElementById('packageType').value);
+            selectedPageSize = parseInt(document.getElementById('pageSize').value);
+            selectedPageNo = parseInt(document.getElementById('pageNo').value);
+
+
+            const data = {
+                SearchText: searchText,
+                CountryId: selectedCountry,
+                CityId: selectedCity,
+                PackageType: selectedPackageType,
+                PageSize: selectedPageSize,
+                PageId: selectedPageNo
+            };
+
+            //get daat feom database
+            getPackage(data).then(result => {
+
+                generatePackageList(result.packages);
+                totlePage = result.totalPage;
+            });
+            
+
+
+            
+        }
+
+        function goNext()
+        {
+            selectedPageNo = selectedPageNo + 1;
+            document.getElementById('pageNo').value = selectedPageNo;
+
+            if(selectedPageNo==totlePage)
+            {
+                togglePageButtons(true, false);
+            }
+            if(selectedPageNo==1 && selectedPageNo !=totlePage)
+            {
+                togglePageButtons(false, true);
+            }
+            if(selectedPageNo==1 && selectedPageNo ==totlePage)
+            {
+                togglePageButtons(false, false);
+            }
+            if(selectedPageNo > 1 && selectedPageNo < totlePage)
+            {
+                togglePageButtons(true, true);
+            }
+
+
+            searchText = document.getElementById('search_text').value;
+            selectedCountry = parseInt(document.getElementById('country').value);
+            selectedCity = parseInt(document.getElementById('city').value);
+            selectedPackageType = parseInt(document.getElementById('packageType').value);
+            selectedPageSize = parseInt(document.getElementById('pageSize').value);
+            selectedPageNo = parseInt(document.getElementById('pageNo').value);
+
+
+            const data = {
+                SearchText: searchText,
+                CountryId: selectedCountry,
+                CityId: selectedCity,
+                PackageType: selectedPackageType,
+                PageSize: selectedPageSize,
+                PageId: selectedPageNo
+            };
+
+
+            //get daat feom database
+            getPackage(data).then(result => {
+
+                generatePackageList(result.packages);
+                totlePage = result.totalPage;
+            });
+
+        }
+
+        function Search() 
+        {
+            searchText = document.getElementById('search_text').value;
+            selectedCountry = parseInt(document.getElementById('country').value);
+            selectedCity = parseInt(document.getElementById('city').value);
+            selectedPackageType = parseInt(document.getElementById('packageType').value);
+            selectedPageSize = parseInt(document.getElementById('pageSize').value);
+            selectedPageNo = parseInt(document.getElementById('pageNo').value);
+
+
+            const data = {
+                SearchText: searchText,
+                CountryId: selectedCountry,
+                CityId: selectedCity,
+                PackageType: selectedPackageType,
+                PageSize: selectedPageSize,
+                PageId: selectedPageNo
+            };
+
+            //get daat feom database
+            getPackage(data).then(result => {
+
+                generatePackageList(result.packages);
+                totlePage = result.totalPage;
+                generatePageOptions(result.totalPage);
+
+                selectedPageNo = parseInt(document.getElementById('pageNo').value);
+
+                if(selectedPageNo==totlePage)
+                {
+                    togglePageButtons(true, false);
+                }
+                if(selectedPageNo==1 && selectedPageNo !=totlePage)
+                {
+                    togglePageButtons(false, true);
+                }
+                if(selectedPageNo==1 && selectedPageNo ==totlePage)
+                {
+                    togglePageButtons(false, false);
+                }
+                if(selectedPageNo > 1 && selectedPageNo < totlePage)
+                {
+                    togglePageButtons(true, true);
+                }
+
+            });
+
+        }
+
+
+        function generatePackageList(packageList) 
+        {
+            const container = document.getElementById('PackageListContainer');
+            container.innerHTML = '';
+
+            packageList.forEach((pkg, index) => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${pkg.packageId}</td>
+                    <td>${pkg.packageName}</td>
+                    <td>${pkg.countryName}</td>
+                    <td>${pkg.cityName}</td>
+                    <td>${pkg.packageTypeName}</td>
+                    <td id="cBtn${pkg.packageId}"><a href="javascript:void(0)" onclick="changeStatus(${pkg.packageId}, '${pkg.status}')">${pkg.status}</a></td>
+                    <td>${pkg.supplierName}</td>
+                    <td><a target="_blank" href="/Package/Create?PackageId=${pkg.packageId}"><i class="fa fa-edit"></i></a></td>
+                `;
+
+                container.appendChild(row);
+            });
+        }
+
+        
+        /* Function to Get page Size */
+        const pageSize = document.getElementById('pageSize');
+        pageSize.addEventListener('change', function() 
+        {
+
+            selectedPageSize = parseInt(document.getElementById('pageSize').value);
+
+            if(selectedPageSize> totlePage)
+            {
+                document.getElementById('pageNo').value = 1;
+            }
+
+            searchText = document.getElementById('search_text').value;
+            selectedCountry = parseInt(document.getElementById('country').value);
+            selectedCity = parseInt(document.getElementById('city').value);
+            selectedPackageType = parseInt(document.getElementById('packageType').value);
+            
+            selectedPageNo = parseInt(document.getElementById('pageNo').value);
+
+
+            const data = {
+                SearchText: searchText,
+                CountryId: selectedCountry,
+                CityId: selectedCity,
+                PackageType: selectedPackageType,
+                PageSize: selectedPageSize,
+                PageId: selectedPageNo
+            };
+
+            
+            //get daat feom database
+            getPackage(data).then(result => {
+
+                generatePackageList(result.packages);
+                totlePage = result.totalPage;
+                generatePageOptions(result.totalPage);
+
+                selectedPageNo = parseInt(document.getElementById('pageNo').value);
+
+                if(selectedPageNo==totlePage)
+                {
+                    togglePageButtons(true, false);
+                }
+                if(selectedPageNo==1 && selectedPageNo !=totlePage)
+                {
+                    togglePageButtons(false, true);
+                }
+                if(selectedPageNo==1 && selectedPageNo ==totlePage)
+                {
+                    togglePageButtons(false, false);
+                }
+                if(selectedPageNo > 1 && selectedPageNo < totlePage)
+                {
+                    togglePageButtons(true, true);
+                }
+
+            });
+        });
+
+        /* Function to show or hide page navigation buttons */
+        function togglePageButtons(showPrev,showNext) {
+            const pageNextButton = document.getElementById('pageNext');
+            const pagePrevButton = document.getElementById('pagePre');
+
+            // Set display property based on showNext and showPrev flags
+            pageNextButton.style.display = showNext ? 'inline-block' : 'none';
+            pagePrevButton.style.display = showPrev ? 'inline-block' : 'none';
+        }
+
+
+        /* Function to generate page number options and get pagenumber */
+        function generatePageOptions(totalPage) {
+            const pageNoSelect = document.getElementById('pageNo');
+            pageNoSelect.innerHTML = ''; // Clear any existing options
+
+            for (let i = 1; i <= totalPage; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                pageNoSelect.appendChild(option);
+            }
+
+            pageNoSelect.addEventListener('change', function() 
+            {
+                const selectedPage = parseInt(pageNoSelect.value);
+                /* console.log('Selected page:', selectedPage); */
+
+                selectedPageNo = selectedPage;
+
+                searchText = document.getElementById('search_text').value;
+                selectedCountry = parseInt(document.getElementById('country').value);
+                selectedCity = parseInt(document.getElementById('city').value);
+                selectedPackageType = parseInt(document.getElementById('packageType').value);
+                selectedPageSize = parseInt(document.getElementById('pageSize').value);
+                selectedPageNo = parseInt(document.getElementById('pageNo').value);
+
+
+                const data = {
+                    SearchText: searchText,
+                    CountryId: selectedCountry,
+                    CityId: selectedCity,
+                    PackageType: selectedPackageType,
+                    PageSize: selectedPageSize,
+                    PageId: selectedPageNo
+                };
+
+
+                //get daat feom database
+                getPackage(data).then(result => {
+
+                    generatePackageList(result.packages);
+                    totlePage = result.totalPage;
+
+                    selectedPageNo = parseInt(document.getElementById('pageNo').value);
+
+                    if(selectedPageNo==totlePage)
+                    {
+                        togglePageButtons(true, false);
+                    }
+                    if(selectedPageNo==1 && selectedPageNo !=totlePage)
+                    {
+                        togglePageButtons(false, true);
+                    }
+                    if(selectedPageNo==1 && selectedPageNo ==totlePage)
+                    {
+                        togglePageButtons(false, false);
+                    }
+                    if(selectedPageNo > 1 && selectedPageNo < totlePage)
+                    {
+                        togglePageButtons(true, true);
+                    }
+                
+
+                });
+
+            });
+        }
+
+        /* Function to get Package list */
+        async function getPackage(data) 
+        {
+            try {
+                const response = await fetch('/Package/GetPackageList', {
+                    method: 'POST',
+                    headers: 
+                    {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                if (!response.ok) 
+                {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+                /* console.log('Packages:', result.packages);
+                console.log('Total Page:', result.totalPage); */
+                return result;
+            } 
+            catch (error) 
+            {
+                console.error('Error fetching package list:', error);
+            }
+        }
+
+
+         /* Function to get city on chnage country */
+        $('#country').change(async function () {
+            var countryId = $(this).val();
+            if (countryId != '0') {
+                try 
+                {
+                    const data = await fetchCities(countryId);
+                    $('#city').empty();
+                    $('#city').append($('<option>', {
+                        value: '0',
+                        text: 'Select City'
+                    }));
+                    $.each(data, function (index, city) 
+                    {
+                        $('#city').append($('<option>', {
+                            value: city.id,
+                            text: city.name
+                        }));
+                    });
+                } 
+                catch (error) {
+                    console.error("Error: " + error);
+                    alert("An error occurred while fetching cities. Please try again later.");
+                }
+            } 
+            else 
+            {
+                // Clear city options when country is not selected
+                $('#city').empty().append($('<option>', {
+                    value: '0',
+                    text: 'Select City'
+                }));
+            }
+        });
+       
+        async function fetchCities(countryId) 
+        {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: '/ActivitiesExtra/GetCity',
+                    type: 'GET',
+                    data: { countryId: countryId },
+                    success: function (data) 
+                    {
+                        resolve(data);
+                    },
+                    error: function (xhr, status, error)
+                    {
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+        /* Functon to change Status of package */
+        /* 
+                async function changeStatus(packageId, newStatus)
+                {
+                    var status = newStatus == "Active" ? 0 : 1;
+                    var flag = 0;
+                    var msg = "Are you sure you want to " + (status == 0 ? 'Inactive' : 'Active') + " this package?";
+                    var confirmation = confirm(msg);
+                    if (!confirmation) 
+                    {
+                        return;
+                    }
+                    try {
+                        const response = await fetch(`/Package/UpdatePackageStatus?PackageId=${packageId}&NewStatus=${status}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        const result = await response.json();
+                        if (result.status === 1) 
+                        {
+                            flag = 1;
+                            alert(result.message);
+                            flag = 1;
+                        } 
+                        else 
+                        {
+                            alert(result.message);
+                        }
+                    }
+                    catch (error) {
+                        console.error('Error updating package status:', error);
+                    }
+
+                    if(flag)
+                    {
+
+                        const statusElement = document.getElementById(`cBtn${packageId}`);
+
+                        const newStatusText = status === 1 ? 'Active' : 'Inactive';
+
+                        statusElement.innerHTML = '';
+
+                        const newLink = document.createElement('a');
+                        newLink.href = "javascript:void(0)";
+                        newLink.setAttribute('onclick', `changeStatus(${packageId}, '${newStatusText}')`);
+                        newLink.textContent = newStatusText;
+
+                        statusElement.appendChild(newLink);
+                    }
+
+
+
+
+                }
+         */
+
+
+        async function changeStatus(packageId, newStatus) {
+            const status = newStatus === "Active" ? 0 : 1;
+            const msg = `Are you sure you want to ${status === 0 ? 'Inactive' : 'Active'} this package?`;
+    
+            const confirmation = confirm(msg);
+            if (!confirmation) {
+                return;
+            }
+    
+            try {
+                const response = await fetch(`/Package/UpdatePackageStatus?PackageId=${packageId}&NewStatus=${status}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) 
+                {
+                    throw new Error('Network response was not ok');
+                }
+                const result = await response.json();
+                if (result.status === 1) {
+                    alert(result.message);
+                    updateStatusInDOM(packageId, status);
+                } else {
+                    alert(result.message);
+                }
+            } 
+            catch (error) {
+                console.error('Error updating package status:', error);
+            }
+        }
+
+        function updateStatusInDOM(packageId, status) {
+            const statusElement = document.getElementById(`cBtn${packageId}`);
+            const newStatusText = status === 1 ? 'Active' : 'Inactive';
+
+            statusElement.innerHTML = '';
+
+            const newLink = document.createElement('a');
+            newLink.href = "javascript:void(0)";
+            newLink.setAttribute('onclick', `changeStatus(${packageId}, '${newStatusText}')`);
+            newLink.textContent = newStatusText;
+
+            statusElement.appendChild(newLink);
+        }
+       
+
+    </script>
+}

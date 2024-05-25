@@ -1,0 +1,125 @@
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Web.config
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\appsettings.Development.json
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\appsettings.json
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.staticwebassets.runtime.json
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.exe
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.deps.json
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.runtimeconfig.json
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.pdb
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Dapper.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\System.Data.SqlClient.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.csproj.AssemblyReference.cache
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.GeneratedMSBuildEditorConfig.editorconfig
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.AssemblyInfoInputs.cache
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.AssemblyInfo.cs
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.csproj.CoreCompileInputs.cache
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.MvcApplicationPartsAssemblyInfo.cache
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.RazorAssemblyInfo.cache
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.RazorAssemblyInfo.cs
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets.build.json
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets.development.json
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.NHIndiaAdminPanel.Microsoft.AspNetCore.StaticWebAssets.props
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.build.NHIndiaAdminPanel.props
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.NHIndiaAdminPanel.props
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.NHIndiaAdminPanel.props
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets.pack.json
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\scopedcss\bundle\NHIndiaAdminPanel.styles.css
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\scopedcss\projectbundle\NHIndiaAdminPanel.bundle.scp.css
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaA.F4381BA0.Up2Date
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\refint\NHIndiaAdminPanel.dll
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.pdb
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.genruntimeconfig.cache
+C:\NH\NHIndia new project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\ref\NHIndiaAdminPanel.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Web.config
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\appsettings.Development.json
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\appsettings.json
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.staticwebassets.runtime.json
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.exe
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.deps.json
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.runtimeconfig.json
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.pdb
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Dapper.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\System.Data.SqlClient.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.csproj.AssemblyReference.cache
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.GeneratedMSBuildEditorConfig.editorconfig
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.AssemblyInfoInputs.cache
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.AssemblyInfo.cs
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.csproj.CoreCompileInputs.cache
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.MvcApplicationPartsAssemblyInfo.cache
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.RazorAssemblyInfo.cache
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.RazorAssemblyInfo.cs
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets.build.json
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets.development.json
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.NHIndiaAdminPanel.Microsoft.AspNetCore.StaticWebAssets.props
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.build.NHIndiaAdminPanel.props
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.NHIndiaAdminPanel.props
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.NHIndiaAdminPanel.props
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets.pack.json
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\scopedcss\bundle\NHIndiaAdminPanel.styles.css
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\scopedcss\projectbundle\NHIndiaAdminPanel.bundle.scp.css
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaA.F4381BA0.Up2Date
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\refint\NHIndiaAdminPanel.dll
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.pdb
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.genruntimeconfig.cache
+C:\NH\NHIndia_new_project\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\ref\NHIndiaAdminPanel.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Web.config
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\appsettings.Development.json
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\appsettings.json
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\global.json
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.staticwebassets.runtime.json
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.exe
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.deps.json
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.runtimeconfig.json
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\NHIndiaAdminPanel.pdb
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Dapper.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Dapper.Contrib.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\Newtonsoft.Json.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\System.Data.SqlClient.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.csproj.AssemblyReference.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.GeneratedMSBuildEditorConfig.editorconfig
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.AssemblyInfoInputs.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.AssemblyInfo.cs
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.csproj.CoreCompileInputs.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.MvcApplicationPartsAssemblyInfo.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.RazorAssemblyInfo.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.RazorAssemblyInfo.cs
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets.build.json
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets.development.json
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.NHIndiaAdminPanel.Microsoft.AspNetCore.StaticWebAssets.props
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.build.NHIndiaAdminPanel.props
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.NHIndiaAdminPanel.props
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.NHIndiaAdminPanel.props
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\staticwebassets.pack.json
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\scopedcss\bundle\NHIndiaAdminPanel.styles.css
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\scopedcss\projectbundle\NHIndiaAdminPanel.bundle.scp.css
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaA.F4381BA0.Up2Date
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\refint\NHIndiaAdminPanel.dll
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.pdb
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\NHIndiaAdminPanel.genruntimeconfig.cache
+F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\obj\Debug\net8.0\ref\NHIndiaAdminPanel.dll

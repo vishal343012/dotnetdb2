@@ -1,0 +1,262 @@
+﻿@using NHIndiaAdminPanel.Models
+@{
+    ViewBag.Title = "CityMap";
+
+    var cityList = ViewBag.CityList;
+    var packageId = @ViewBag.PackageId;
+}
+
+<style>
+    .ui-widget.ui-widget-content {
+        z-index: 99999 !important;
+    }
+
+    #myModal {
+        position: fixed;
+        top: 10%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display:none;
+        z-index: 1050;
+        overflow: hidden;
+    }
+
+    #cityList
+    {
+        border:1px solid black;
+    }
+    .city-item {
+        cursor: pointer; /* Change cursor to pointer on hover */
+    }
+</style>
+
+<div id="main-wrapper">
+    <div class="">
+        @if (packageId != 0)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills" role="tablist" id="Packagetabl">
+                        <li role="presentation" class=""><a href="/Package/Create?PackageId=@ViewBag.PackageId">Basic Details</a></li>
+                        <li role="presentation" class=""><a href="/Package/Description?PackageId=@ViewBag.PackageId">Description</a></li>
+                        <li role="presentation" class="active"><a href="/Package/CityMap?PackageId=@ViewBag.PackageId">City Map</a></li>
+                        <li role="presentation" class=""><a href="/Package/Inclusion?PackageId=@ViewBag.PackageId">Inclusion</a></li>
+                        <li role="presentation" class=""><a href="/Package/Price?PackageId=@ViewBag.PackageId">Price</a></li>
+                        <li role="presentation" class=""><a href="/Package/Images?PackageId=@ViewBag.PackageId">Images</a></li>
+                    </ul>
+                    <br>
+                </div>
+            </div>
+        }
+        <div class="page-title">
+            <h3 class="breadcrumb-header">City & Nights</h3>
+        </div>
+        <div>
+            <button class="btn btn-primary" id="addCityNightsBtn" onclick="addCityNights()">Add City & Nights</button>
+        </div>
+        @using (Html.BeginForm("SavePackageCityMap", "Package", FormMethod.Post))
+        {
+            <div id="myModal" class="">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button onclick="closef()" type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Update City And Nights</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>City*</label>
+                                    <input type="text" class="form-control" placeholder="Where are you going?" id="text-search" name="CityName">
+                                    <div id="cityList" style="display: none;"></div>
+                                    <input type="hidden" value="@ViewBag.PackageId" name="PackageId" id="packageId" />
+                                    <input type="hidden" value="" name="CityId" id="selectedCityId" />
+                                    <input type="hidden" value="0" name="CityMapId" id="cityMapId" />
+
+                                </div>
+                            </div>
+                            <div class="row m-t-md">
+                                <div class="col-md-6">
+                                    <label>Nights*</label>
+                                    <input type="number" min="0" class="form-control" id="text-nights" name="Nights" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Hotel Name*</label>
+                                    <input type="text" class="form-control" id="text-hotelname" name="HotelName" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-default" id="saveCityMapBtn">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        
+        @using (Html.BeginForm("RemoveCityMap", "Package", FormMethod.Post, new { id = "removeCityMapForm" }))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="cityMapTable">
+                            <thead>
+                                <tr>
+                                    <th>City Name</th>
+                                    <th>Hotel Name</th>
+                                    <th>Nights</th>
+                                    <th>Edit</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var sn in ViewBag.CityList)
+                                {
+                                    <tr>
+                                        <td>@sn.CityName</td>
+                                        <td>@sn.HotelName</td>
+                                        <td>@sn.Nights</td>
+                                        <td><a href="" class="editBtn" onclick="UpdateModal('@sn.CityName,@sn.Nights,@sn.HotelName, @sn.CityId, @sn.PackageId, @sn.CityMapId ')"><i class="fa fa-edit"></i></a></td>
+                                        <td>
+                                            <input type="hidden" value="@ViewBag.PackageId" name="PackageId" />
+                                            <input type="hidden" value="@sn.CityMapId" name="CityMapId" />
+                                            <button type="submit" class="removeCityMapBtn" data-citymapid="@sn.CityMapId"><i class="fa fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+@section scripts {
+    <script src="/js/jscommonajaxcall.js"></script>
+    <script>
+        var message = "@TempData["Message"]";
+        if (message) {
+            alert(message);
+            "@TempData.Remove("Message")";
+            closef();
+        }
+
+        var cityList = document.getElementById("cityList");
+        var selectedCityIdInput = document.getElementById("selectedCityId");
+        var myModal = document.getElementById("myModal");
+
+
+        // fech city name
+        document.addEventListener("DOMContentLoaded", function () {
+            var cityInput = document.getElementById("text-search");
+            var minCharToShowData = 2; // Minimum characters to start showing data
+
+            cityInput.addEventListener("input", function () {
+                var prefix = this.value.trim();
+                if (prefix.length >= minCharToShowData) {
+                    fetch("/ActivitiesExtra/GetCityCountryPrefix?Prefix=" + prefix)
+                        .then(response => response.json())
+                        .then(data => {
+                            showCityList(data);
+                        })
+                        .catch(error => {
+                            console.error('Error fetching data:', error);
+                        });
+                } 
+                else 
+                {
+                    hideCityList();
+                }
+            });
+
+            function showCityList(data) {
+                cityList.innerHTML = "";
+                if (data.length > 0) {
+                    data.forEach(function (city) {
+                        var cityName = city.cityName || '';
+                        var countryName = city.countryName || '';
+                        var listItem = document.createElement("div");
+                        listItem.textContent = cityName + ", " + countryName;
+                        listItem.classList.add("city-item");
+                        listItem.addEventListener("click", function () {
+                            cityInput.value = cityName;
+                            selectedCityIdInput.value = city.cityId; // Set the city ID to the hidden input field
+                            hideCityList();
+                        });
+                        cityList.appendChild(listItem);
+                    });
+                    cityList.style.display = "block";
+                } else {
+                    hideCityList();
+                }
+            }
+        });
+
+
+        // call to remove city
+        document.querySelectorAll('.removeCityMapBtn').forEach(function (button) {
+            button.addEventListener('click', function (){
+                debugger;
+                var confirmation = confirm("Are you sure you want to remove this city map?");
+                
+                // If user confirms
+                if (!confirmation) {
+                    event.preventDefault(); // Prevent default form submission
+                } else {
+                    var form = button.closest('form');
+                    var cityMapId = button.getAttribute('data-citymapid');
+                    form.querySelector('[name="CityMapId"]').value = cityMapId;
+                }
+            });
+        });
+
+
+        //update city
+        function UpdateModal(data) {
+            debugger;
+            event.preventDefault();
+
+            var dataArray = data.split(",");
+            var cityName = dataArray[0].trim();
+            var nights = dataArray[1].trim();
+            var hotelName = dataArray[2].trim();
+            var cityId = dataArray[3].trim();
+            var packageId = dataArray[4].trim();
+            var cityMapId = dataArray[5].trim();
+
+            document.getElementById("text-search").value = cityName;
+            document.getElementById("packageId").value = packageId;
+            document.getElementById("selectedCityId").value = cityId;
+            document.getElementById("text-hotelname").value = hotelName;
+            document.getElementById("text-nights").value = nights;
+            document.getElementById("cityMapId").value = cityMapId;
+
+            addCityNights();
+        }
+
+
+        function hideCityList() {
+            cityList.innerHTML = "";
+            cityList.style.display = "none";
+        }
+
+        function addCityNights() {
+            var myModal = document.getElementById("myModal");
+            myModal.style.display = "block";
+        }
+
+        function closef() {
+            var myModal = document.getElementById("myModal");
+            myModal.style.display = "none";
+        }
+    </script>
+
+
+}

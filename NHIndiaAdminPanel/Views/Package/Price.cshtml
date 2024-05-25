@@ -1,0 +1,956 @@
+﻿@{
+    ViewBag.Title = "Options";
+    var packageId = @ViewBag.PackageId;
+
+
+    var PackageSettings = @ViewBag.PackageSettings;
+    var PackageOccupancy = @ViewBag.PackageOccupancy;
+    var PackageDetails = @ViewBag.PackageDetails;
+}
+
+<style>
+    .ui-timepicker-container {
+        z-index: 9999999 !important;
+    }
+
+    #myModal {
+        position: fixed;
+        top: 10%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+        z-index: 1050;
+        overflow: hidden;
+    }
+
+    #myModalDynamicPackage {
+        position: fixed;
+        top: 10%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+        z-index: 1050;
+        overflow: hidden;
+    }
+
+    .bn {
+        margin: 0 10px;
+    }
+
+    .col-md-3 {
+        padding-right: 0px !important;
+        padding-left: 5px !important;
+    }
+
+    .roBTN
+    {
+        margin-left: 5px;
+    }
+</style>
+
+<div>
+    <div class="">
+        @if (packageId != 0)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills" role="tablist" id="Packagetabl">
+                        <li role="presentation" class=""><a href="/Package/Create?PackageId=@packageId">Basic Details</a></li>
+                        <li role="presentation" class=""><a href="/Package/Description?PackageId=@packageId">Description</a></li>
+                        <li role="presentation" class=""><a href="/Package/CityMap?PackageId=@packageId">City Map</a></li>
+                        <li role="presentation" class=""><a href="/Package/Inclusion?PackageId=@packageId">Inclusion</a></li>
+                        <li role="presentation" class="active"><a href="/Package/Price?PackageId=@packageId">Price</a></li>
+                        <li role="presentation" class=""><a href="/Package/Images?PackageId=@packageId">Images</a></li>
+                    </ul>
+                    <br>
+                </div>
+            </div>
+        }
+
+        <div class="page-title">
+            <h3 class="breadcrumb-header">Package Prices</h3>
+        </div>
+
+        <div class="row">
+
+
+            <div class="col-md-12">
+                @if (PackageDetails.IsDynamicPackage == 0)
+                {
+                    <button class="btn btn-primary" onclick="OpenDateModel()">Manage Dates</button>
+                }
+                <br>
+                <b>Settings</b>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Child 1</td>
+                            <td><input id="c1f" placeholder="Child 1 From" type="number" class="form-control" value="@PackageSettings.Child1From" /></td>
+                            <td><input id="c1t" placeholder="Child 1 To" type="number" class="form-control" value="@PackageSettings.Child1To" /></td>
+                            <td><input id="c1n" placeholder="Child 1 Name" type="text" class="form-control" value="@PackageSettings.Child1Name" /></td>
+                            <td><input id="c1p" placeholder="Child 1 Price" type="text" class="form-control" value="@PackageSettings.Child1Price" /></td>
+                        </tr>
+                        <tr>
+                            <td>Child 2</td>
+                            <td><input id="c2f" placeholder="Child 2 From" type="number" class="form-control" value="@PackageSettings.Child2From" /></td>
+                            <td><input id="c2t" placeholder="Child 2 To" type="number" class="form-control" value="@PackageSettings.Child2To" /></td>
+                            <td><input id="c2n" placeholder="Child 2 Name" type="text" class="form-control" value="@PackageSettings.Child2Name" /></td>
+                            <td><input id="c2p" placeholder="Child 2 Price" type="text" class="form-control" value="@PackageSettings.Child2Price" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Infant</td>
+                            <td><input id="i1f" placeholder="Infant From" type="number" class="form-control" value="@PackageSettings.InfantFrom" /></td>
+                            <td><input id="i1t" placeholder="Infant To" type="number" class="form-control" value="@PackageSettings.InfantTo" /></td>
+                            <td><input id="i1n" placeholder="Infant Name" type="text" class="form-control" value="@PackageSettings.InfantName" /></td>
+                            <td><input id="i1p" placeholder="Infant Price" type="text" class="form-control" value="@PackageSettings.InfantPrice" /></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            @if (PackageDetails.IsDynamicPackage == 1)
+            {
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3 m-b-lg">
+                            <label>Select Slab</label>
+                            <select class="form-control" onchange="getSlab(this)" id="slabDroupDown">
+                                <option value="0">Select Slab</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-3 m-b-lg">
+                            <label>Manage Slabs</label><br />
+                            <button class="btn btn-primary" onclick="OpenSlabModel()">Manage Slabs</button>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+
+            <div class="col-md-12">
+                <b>Adult Rate</b>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Option Name</th>
+                            <th width="12%">From Pax</th>
+                            <th width="12%">To Pax</th>
+                            <th>Price</th>
+                            <th>Add/Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dynamicSlablRate">
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="col-md-12">
+                <b>Occupancy</b>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="17%">Adult</th>
+                            <th width="17%">Child 1</th>
+                            <th width="16%">Child 2</th>
+                            <th width="16%">Infant</th>
+                            <th width="16%">Max Pax</th>
+                            <th>Add/Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="PackageOccupancy">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary" onclick="Save()">Save</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="myModal">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="closef()">&times;</button>
+                    <h4 class="modal-title">Dates </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label>Date</label>
+                            <input class="form-control" id="dt1" type="date" />
+                            <input type="hidden" value="@ViewBag.PackageId" name="PackageId" id="packageId" />
+                            <input type="hidden" value="0" name="DateId" id="dateId" />
+                        </div>
+                        <div class="col-md-6">
+                            <br>
+                            <button class="btn btn-primary" onclick="SaveSlab()">Save Slab</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="slabDate">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModalDynamicPackage">
+        <div class="modal-dialog modal-md">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="closeSlab()">&times;</button>
+                    <h4 class="modal-title">Slabs </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Slab Name</label>
+                            <input class="form-control" id="slabName" Name="DynamicSlab.SlabName" required />
+                            <input type="hidden" value="0" name="slabId" id="slabId" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>From Date</label>
+                            <input class="form-control" id="dtFrom" Name="DynamicSlab.FromDate" type="date" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>To Date</label>
+                            <input class="form-control" id="dtTo" Name="DynamicSlab.ToDate" type="date" />
+                        </div>
+                        <div class="col-md-3">
+                            <br>
+                            <button class="btn btn-primary" onclick="SaveDynamicSlab()">Save Slab</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>From Date</th>
+                                        <th>To Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dslab">
+                                    <tr">
+                                        <td colspan="4">No records Found</td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        var packageId = '@packageId';
+        var myModal = document.getElementById("myModal");
+
+        var dynamicSlablRateCount = 1;
+        var PackageOccupancyCount = 1;
+        var setting ={};
+        var prices=[];
+        var occupancy=[];
+        var detail=0;
+        var slabId=0;
+
+        $(document).ready(function () 
+        {
+            var packageId = '@packageId';
+            getDynamicSlab(packageId);
+            GetPrice(0);
+            
+        });
+
+        function getSlab(selectElement) 
+        {
+
+            var selectedSlabId = selectElement.value;
+            GetPrice(selectedSlabId);
+
+        }
+
+
+        function OpenSlabModel() 
+        {
+            var myModalSlab = document.getElementById("myModalDynamicPackage");
+            myModalSlab.style.display = "block";
+
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('dtFrom').setAttribute('min', today);
+
+            document.getElementById('dtFrom').addEventListener('input', function () 
+            {
+                var selectedDate = new Date(this.value);
+                if (selectedDate < new Date()) {
+                    if (selectedDate.toISOString().split('T')[0] !== today) {
+                        this.value = '';
+                        alert('Please select a date equal to or after today.');
+                    }
+                }
+            });
+
+            document.getElementById('dtTo').setAttribute('min', today);
+
+            document.getElementById('dtTo').addEventListener('input', function () 
+            {
+                var selectedDate = new Date(this.value);
+                if (selectedDate < new Date()) {
+                    if (selectedDate.toISOString().split('T')[0] !== today) {
+                        this.value = '';
+                        alert('Please select a date equal to or after today.');
+                    }
+                }
+            });
+
+            getDynamicSlab(packageId);
+        }
+
+        function closeSlab() 
+        {
+            var myModalSlab = document.getElementById("myModalDynamicPackage");
+            myModalSlab.style.display = "none";
+        }
+
+        function clearDynamicSlab() 
+        {
+            document.getElementById('slabName').value = '';
+            document.getElementById('dtFrom').value = '';
+            document.getElementById('dtTo').value = '';
+        }
+
+        function SaveDynamicSlab() 
+        {
+            var packageId = document.getElementById('packageId').value;
+            var slabId = document.getElementById('slabId').value;
+            var slabName = document.getElementById('slabName').value;
+            var fromDate = document.getElementById('dtFrom').value;
+            var toDate = document.getElementById('dtTo').value;
+
+            // Convert date strings to Date objects
+            var fromDateObj = new Date(fromDate);
+            var toDateObj = new Date(toDate);
+
+            // Check if toDate is smaller than fromDate
+            if (toDateObj < fromDateObj) {
+                alert('To Date cannot be smaller than From Date.');
+                document.getElementById('dtFrom').value = '';
+                document.getElementById('dtTo').value = '';
+                return;
+            }
+            var data = {
+                SlabId: slabId,
+                SlabName: slabName,
+                FromDate: fromDate,
+                ToDate: toDate,
+                PackageId: packageId
+            };
+
+            $.ajax({
+                url: '/Package/SaveDynamicSlab',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (response)
+                {
+                    alert(response.message);
+                    clearDynamicSlab();
+                    getDynamicSlab(packageId);
+                },
+                error: function (xhr, status, error) 
+                {
+                    console.error(error);
+                    alert('An error occurred while saving the slab.');
+                }
+            });
+        }
+
+        function getDynamicSlab(packageId) 
+        {
+            $.ajax({
+                url: '/Package/GetPackageDynamicSlabs?PackageId=' + packageId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) 
+                {
+                    var tbody = $('#dslab');
+                    tbody.empty();
+
+                    if (response && response.length > 0) 
+                    {
+                        var selectDropdown = $('#slabDroupDown');
+                        selectDropdown.empty();
+                        selectDropdown.append('<option value="0">Select Slab</option>');
+
+                        $.each(response, function (index, data) {
+                            var row = $('<tr>');
+                            row.append($('<td>').text(data['SlabName']));
+                            row.append($('<td>').text(data['FromDate']));
+                            row.append($('<td>').text(data['ToDate']));
+                            var buttonsCell = $('<td>');
+                            buttonsCell.append('<button class="btn btn-primary bn" onclick="EditDynamicSlab(' + data['SlabId'] + ', \'' + data['SlabName'] + '\', \'' + data['FromDate'] + '\', \'' + data['ToDate'] + '\')">Edit</button>&nbsp;');
+                            buttonsCell.append('<button class="btn btn-primary bn" onclick="DeleteDynamicSlab(' + data['SlabId'] + ')">Delete</button>');
+                            row.append(buttonsCell);
+                            tbody.append(row);
+
+                            selectDropdown.append('<option value="' + data['SlabId'] + '">' + data['SlabName'] + '</option>');
+                        });
+                    } 
+                    else 
+                    {
+                        tbody.html('<tr><td colspan="4">No records Found</td></tr>');
+                    }
+                },
+                error: function (xhr, status, error)
+                {
+
+                    console.error(error);
+                }
+            });
+        }
+
+        function formatDate(date) 
+        {
+            var d = new Date(date);
+            var year = d.getFullYear();
+            var month = ('0' + (d.getMonth() + 1)).slice(-2);
+            var day = ('0' + d.getDate()).slice(-2);
+            return year + '-' + month + '-' + day;
+        }
+
+        function EditDynamicSlab(slabId, slabName, fromDate, toDate) 
+        {
+            document.getElementById('slabId').value = slabId;
+            document.getElementById('slabName').value = slabName;
+            document.getElementById('dtFrom').value = formatDate(fromDate);
+            document.getElementById('dtTo').value = formatDate(toDate);
+        }
+
+        function DeleteDynamicSlab(SlabId) 
+        {
+            var confirmation = confirm('Are you sure you want to delete this slab?');
+            if (!confirmation) 
+            {
+                return;
+            }
+            $.ajax({
+                url: '/Package/DeleteDynamicSlab?SlabId=' + SlabId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) 
+                {
+                    if (response.status === 1) 
+                    {
+                        getDynamicSlab('@ViewBag.PackageId');
+                        alert(response.message);
+                    } 
+                    else 
+                    {
+                        alert('Failed to delete slab: ' + response.message);
+                    }
+                },
+                error: function (xhr, status, error) 
+                {
+                    console.error('Error deleting slab:', error);
+                    alert('An error occurred while deleting the slab.');
+                }
+            });
+        }
+
+        function generateAdultRateField(PackagePrice) 
+        {
+            if (PackagePrice.length === 0) 
+            {
+                addEmptyAdultRateField();
+            } 
+            else 
+            {
+                // Loop through each item in PackagePrice and populate the fields
+                PackagePrice.forEach(function (item, index) {
+                    var newRow = $('<tr>');
+                    newRow.attr('id', 'row_' + dynamicSlablRateCount);
+
+                    newRow.append('<input type="hidden" id="PriceId' + dynamicSlablRateCount + '" value="' + item.priceId + '" />');
+
+                    newRow.append('<td><input placeholder="Option Name" type="text" value="' + item.optionName + '" class="form-control" id="ON' + dynamicSlablRateCount + '" /></td>');
+                    newRow.append('<td><input placeholder="From Adult" type="number" class="form-control" value="' + item.fromAdult + '" id="FA' + dynamicSlablRateCount + '" /></td>');
+                    newRow.append('<td><input placeholder="To Adult" type="number" class="form-control" value="' + item.toAdult + '" id="TA' + dynamicSlablRateCount + '" /></td>');
+                    newRow.append('<td><input placeholder="Price" class="form-control" value="' + item.price + '" id="P' + dynamicSlablRateCount + '" /></td>');
+
+                    var buttonsHTML = '<button class="btn btn-success" onclick="Add()">Add+</button>&nbsp;';
+
+                    
+                     buttonsHTML += '<button class="btn btn-danger" onclick="Remove(' + dynamicSlablRateCount + ')">Remove-</button>';
+                    
+
+                    newRow.append('<td>' + buttonsHTML + '</td>');
+
+                    $('#dynamicSlablRate').append(newRow);
+                    dynamicSlablRateCount++;
+                });
+            }
+        }
+
+        function addEmptyAdultRateField() 
+        {
+            var newRow = $('<tr>');
+            newRow.attr('id', 'row_' + dynamicSlablRateCount);
+
+            newRow.append('<input type="hidden" id="PriceId' + dynamicSlablRateCount + '" value="0" />');
+
+            newRow.append('<td><input placeholder="Option Name" type="text" value="" class="form-control" id="ON' + dynamicSlablRateCount + '" /></td>');
+            newRow.append('<td><input placeholder="From Adult" type="number" class="form-control" id="FA' + dynamicSlablRateCount + '" /></td>');
+            newRow.append('<td><input placeholder="To Adult" type="number" class="form-control" id="TA' + dynamicSlablRateCount + '" /></td>');
+            newRow.append('<td><input placeholder="Price" class="form-control" id="P' + dynamicSlablRateCount + '" /></td>');
+
+            var buttonsHTML = '<button class="btn btn-success" onclick="Add()">Add+</button>&nbsp;';
+            buttonsHTML += '<button class="btn btn-danger" onclick="Remove(' + dynamicSlablRateCount + ')">Remove-</button>';
+            newRow.append('<td>' + buttonsHTML + '</td>');
+            $('#dynamicSlablRate').append(newRow);
+            dynamicSlablRateCount++;
+        }
+
+        function Add() 
+        {
+            generateAdultRateField([]);
+        }
+
+        function Remove(index) 
+        {
+            $('#row_' + index).remove();
+        }
+
+        function generateOccupancyFields(occupancy) 
+        {
+            if (occupancy.length === 0) 
+            {
+                addEmptyOccupancyField();
+            }
+            else 
+            {
+                occupancy.forEach(function (item, index) {
+                    var newRow = $('<tr>');
+                    newRow.attr('id', 'Occupancyrow_' + PackageOccupancyCount);
+
+                    newRow.append('<input type="hidden" id="OccupancyId' + PackageOccupancyCount + '" value="' + item.occupancyId + '" />');
+
+                    newRow.append('<td><input placeholder="Adult" type="number" class="form-control" name="Adult" value="' + item.adult + '" id="Adult' + PackageOccupancyCount + '" /></td>');
+                    newRow.append('<td><input placeholder="Child 1" type="number" class="form-control" name="Child1" value="' + item.child1 + '" id="Child1' + PackageOccupancyCount + '" /></td>');
+                    newRow.append('<td><input placeholder="Child 2" type="number" class="form-control" name="Child2" value="' + item.child2 + '" id="Child2' + PackageOccupancyCount + '" /></td>');
+                    newRow.append('<td><input placeholder="Infant" type="number" class="form-control" name="Infant" value="' + item.infant + '" id="Infant' + PackageOccupancyCount + '" /></td>');
+                    newRow.append('<td><input placeholder="Max Pax" type="number" class="form-control" name="MaxPax" value="' + item.maxPax + '" id="MaxPax' + PackageOccupancyCount + '" /></td>');
+
+                    var buttonsHTML = '';
+
+                    buttonsHTML += '<button class="btn btn-success aoBTN" onclick="AddOccupancy()">Add+</button>';
+                    buttonsHTML += '<button class="btn btn-danger roBTN" onclick="RemoveOccupancy(' + PackageOccupancyCount + ')">Remove-</button>';
+                    newRow.append('<td>' + buttonsHTML + '</td>');
+                    $('#PackageOccupancy').append(newRow);
+                    PackageOccupancyCount++;
+                });
+
+            }
+        }
+
+        function addEmptyOccupancyField() 
+        {
+            var newRow = $('<tr>');
+            newRow.attr('id', 'Occupancyrow_' + PackageOccupancyCount);
+
+            newRow.append('<input type="hidden" id="OccupancyId' + PackageOccupancyCount + '" value="0" />');
+
+            newRow.append('<td><input placeholder="Adult" type="number" class="form-control" name="Adult" id="Adult' + PackageOccupancyCount + '" /></td>');
+            newRow.append('<td><input placeholder="Child 1" type="number" class="form-control" name="Child1" id="Child1' + PackageOccupancyCount + '" /></td>');
+            newRow.append('<td><input placeholder="Child 2" type="number" class="form-control" name="Child2" id="Child2' + PackageOccupancyCount + '" /></td>');
+            newRow.append('<td><input placeholder="Infant" type="number" class="form-control" name="Infant" id="Infant' + PackageOccupancyCount + '" /></td>');
+            newRow.append('<td><input placeholder="Max Pax" type="number" class="form-control" name="MaxPax" id="MaxPax' + PackageOccupancyCount + '" /></td>');
+
+            var buttonsHTML = '<button class="btn btn-success aoBTN" onclick="AddOccupancy()">Add+</button>';
+            buttonsHTML += '<button class="btn btn-danger roBTN" onclick="RemoveOccupancy(' + PackageOccupancyCount + ')">Remove-</button>';
+            newRow.append('<td>' + buttonsHTML + '</td>');
+
+            $('#PackageOccupancy').append(newRow);
+            PackageOccupancyCount++;
+        }
+
+        function AddOccupancy()
+        {
+            generateOccupancyFields([]);
+        }
+
+        function RemoveOccupancy(index) 
+        {
+            $('#Occupancyrow_' + index).remove();
+        }
+
+        function GetPrice(slab) 
+        {
+
+            var selectedSlabId = slab;
+            var packageId = '@packageId';
+
+            //empty the price slab
+            dynamicSlablRateCount = 1;
+            PackageOccupancyCount = 1;
+            $('#PackageOccupancy').empty();
+            $('#dynamicSlablRate').empty();
+            // Call the API to get package price data
+            $.ajax({
+                url: '/Package/GetPackagePrice?PackageId=' + packageId + '&SlabId=' + selectedSlabId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    // Process the response and store data in different variables
+                    // console.log(response);
+                    setting = response.setting;
+                    prices = response.price;
+                    occupancy = response.occupancy;
+                    detail = response.detail;
+                    slabId = response.slabId;
+
+                    // Now you can use these variables as needed
+                    // console.log("Setting:", setting);
+                    // console.log("Prices:", prices);
+                    // console.log("Occupancy:", occupancy);
+                     // console.log("Detail:", detail);
+                    // console.log("Slab ID:", slabId);
+
+
+                    generateAdultRateField(prices);
+
+                    if (selectedSlabId == 0 )
+                    {
+                        $('#dynamicSlablRate').empty();
+                    }
+                    generateOccupancyFields(occupancy);
+                    if (detail.isDynamicPackage== 0)
+                    {
+                        generateAdultRateField(prices);
+                    }
+                },
+                error: function (xhr, status, error) 
+                {
+                    if (selectedSlabId == 0) 
+                    {
+                        $('#dynamicSlablRate').empty();
+                    }
+                    console.error('Error fetching package price:', error);
+                    alert('An error occurred while fetching package price.');
+                }
+            });
+
+        }
+
+        function OpenDateModel() 
+        {
+            var myModal = document.getElementById("myModal");
+            myModal.style.display = "block";
+
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('dt1').setAttribute('min', today);
+
+            document.getElementById('dt1').addEventListener('input', function () 
+            {
+                var selectedDate = new Date(this.value);
+                if (selectedDate < new Date()) {
+                    if (selectedDate.toISOString().split('T')[0] !== today) {
+                        this.value = '';
+                        alert('Please select a date equal to or after today.');
+                    }
+                }
+            });
+            getPackageSlabs(packageId);
+        }
+
+        function closef() 
+        {
+            var myModal = document.getElementById("myModal");
+            myModal.style.display = "none";
+        }
+
+        function SaveSlab() 
+        {
+            var date = document.getElementById('dt1').value;
+            var packageId = document.getElementById('packageId').value;
+            var dateId = document.getElementById('dateId').value;
+
+            var data = {
+                DateId: dateId,
+                Date: date,
+                PackageId: packageId
+            };
+
+            $.ajax({
+                url: '/Package/SaveSlab',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (response) 
+                {
+                    alert(response.message);
+                    document.getElementById('dt1').value = '';
+                    getPackageSlabs(packageId);
+                },
+                error: function (xhr, status, error) 
+                {
+                    console.error(error);
+                    alert('An error occurred while saving the slab.');
+                }
+            });
+        }
+
+        function getPackageSlabs(packageId) 
+        {
+            $.ajax({
+                url: '/Package/GetPackageSlabs?PackageId=' + packageId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) 
+                {
+                    var tbody = $('#slabDate');
+                    tbody.empty();
+                    if (response && response.length > 0) 
+                    {
+                        $.each(response, function (index, data) 
+                        {
+                            var row = $('<tr>');
+                            row.append($('<td>').text(data['Date']));
+                            var buttonsCell = $('<td>');
+                            buttonsCell.append('<button class="btn btn-primary bn" onclick="EditSlab(' + data['DateId'] + ', \'' + data['Date'] + '\')">Edit</button>');
+                            buttonsCell.append('<button class="btn btn-primary bn" onclick="DeleteSlab(' + data['DateId'] + ')">Delete</button>');
+                            row.append(buttonsCell);
+                            tbody.append(row);
+                        });
+                    } 
+                    else 
+                    {
+                        tbody.html('<tr><td colspan="2">No records Found</td></tr>');
+                    }
+                },
+                error: function (xhr, status, error) 
+                {
+                    console.error(error);
+                }
+            });
+        }
+
+        function EditSlab(dateId, date) 
+        {
+            var formattedDate = new Date(date).toISOString().split('T')[0];
+            $('#dateId').val(dateId);
+            $('#dt1').val(formattedDate);
+        }
+
+        function DeleteSlab(slabId) 
+        {
+            var confirmation = confirm('Are you sure you want to delete this slab?');
+            if(!confirmation) 
+            {
+                return;
+            }
+            $.ajax({
+                url: '/Package/DeleteSlab?SlabId=' + slabId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) 
+                {
+                    if (response.status === 1) 
+                    {
+                        getPackageSlabs('@ViewBag.PackageId');
+                        alert(response.message);
+                    } 
+                    else 
+                    {
+                        alert('Failed to delete slab: ' + response.message);
+                    }
+                },
+                error: function (xhr, status, error)
+                {
+                    console.error('Error deleting slab:', error);
+                    alert('An error occurred while deleting the slab.');
+                }
+            });
+        }
+
+
+        function Save() {
+            occupancy = [];
+            prices = [];
+            // Get the values of each input field in the current row
+            var child1From = parseInt($("#c1f").val());
+            var child1To = parseInt($("#c1t").val());
+            var child1Name = $("#c1n").val();
+            var child1Price = parseFloat($("#c1p").val());
+
+            var child2From = parseInt($("#c2f").val());
+            var child2To = parseInt($("#c2t").val());
+            var child2Name = $("#c2n").val();
+            var child2Price = parseFloat($("#c2p").val());
+
+            var infantFrom = parseInt($("#i1f").val());
+            var infantTo = parseInt($("#i1t").val());
+            var infantName = $("#i1n").val();
+            var infantPrice = parseFloat($("#i1p").val());
+
+            // Assign the values to the object properties
+            setting.Child1From = child1From;
+            setting.Child1To = child1To;
+            setting.Child1Name = child1Name;
+            setting.Child1Price = child1Price;
+
+            setting.Child2From = child2From;
+            setting.Child2To = child2To;
+            setting.Child2Name = child2Name;
+            setting.Child2Price = child2Price;
+
+            setting.PackageId = packageId;
+
+            setting.InfantFrom = infantFrom;
+            setting.InfantTo = infantTo;
+            setting.InfantName = infantName;
+            setting.InfantPrice = infantPrice;
+
+            //get data of Adult Rate
+            for (var i = 1; i < dynamicSlablRateCount; i++) 
+            {
+                var element = document.getElementById("PriceId" + i);
+                if (element !== null) 
+                {
+
+                    var priceId = parseInt($("#PriceId" + i).val());
+                    var optionName = $("#ON" +i).val();
+                    var fromAdult= parseInt($("#FA" + i).val());
+                    var toAdult = parseInt($("#TA" + i).val());
+                    var price = parseInt($("#P" + i).val());
+
+
+                    if (isNaN(priceId)) priceId = 0;
+                    if (isNaN(fromAdult)) fromAdult = 0;
+                    if (isNaN(toAdult)) toAdult = 0;
+                    if (isNaN(price)) price = 0;
+
+                    var price1 = { priceId: priceId, optionName: optionName, fromAdult: fromAdult, toAdult: toAdult, price: price };
+                    prices.push(price1);
+                }
+            }
+
+            // get data of Occupancy
+            for(var i = 1; i < PackageOccupancyCount; i++) 
+            {
+                var element = document.getElementById("OccupancyId" + i);
+                if (element !== null) {
+
+                    var occupancyId = parseInt($("#PriceId" + i).val());
+                    var adult = parseInt($("#Adult" + i).val());
+                    var child1 = parseInt($("#Child1" + i).val());
+                    var child2 = parseInt($("#Child2" + i).val());
+                    var infant = parseInt($("#Infant" + i).val());
+                    var maxPax = parseInt($("#MaxPax" + i).val());
+
+
+                    if (isNaN(occupancyId)) occupancyId = 0;
+                    if (isNaN(adult)) adult = 0;
+                    if (isNaN(child1)) child1 = 0;
+                    if (isNaN(child2)) child2 = 0;
+                    if (isNaN(infant)) infant = 0;
+                    if (isNaN(maxPax)) maxPax = 0;
+
+                    var occu = { occupancyId: occupancyId, adult: adult, child1: child1, child2: child2, infant: infant, maxPax: maxPax };
+
+                    occupancy.push(occu);
+                }
+            }
+
+
+            // console.log(setting);
+            // console.log(prices);
+            // console.log(occupancy);
+            // console.log(slabId);
+            // console.log(detail);
+
+            var data = {
+                Setting: setting,
+                Price: prices,
+                Occupancy: occupancy,
+                Detail: detail,
+                SlabId: slabId
+            };
+
+            // Perform AJAX request to send data to the server
+            $.ajax({
+                type: "POST",
+                url: "/Package/SavePackagePrice",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    debugger;
+                    if(response.success) 
+                    {
+                        alert(response.message);
+                        GetPrice(0);
+                    } 
+                    else 
+                    {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("Error occurred while saving data.");
+                    console.log("Status:", textStatus);
+                    console.log("Error:", errorThrown);
+                }
+            });
+
+        }
+
+    </script>
+}
+

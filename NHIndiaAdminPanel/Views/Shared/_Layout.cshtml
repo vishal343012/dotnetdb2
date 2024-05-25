@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Admin Dashboard Template">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="stacks">
+    <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>CRM - @ViewBag.Title</title>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="~/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/summernote.min.css" rel="stylesheet" />
+    
+
+    @if (ViewBag.FontAwesome != "1")
+    {
+        <link href="~/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    }
+    <link href="~/plugins/icomoon/style.css" rel="stylesheet">
+    <link href="~/plugins/uniform/css/default.css" rel="stylesheet" />
+    <link href="~/plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <!-- Theme Styles -->
+    <link href="~/css/custom.css?@DateTime.Now.ToString()" rel="stylesheet"> 
+    
+
+
+
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/space.css" rel="stylesheet" />
+    <link href="~/css/space.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <div class="page-sidebar">
+            <a class="logo-box" href="/">
+                <span>CRM</span>
+                <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+                <i class="icon-close" id="sidebar-toggle-button-close"></i>
+            </a>
+            <div class="page-sidebar-inner">
+                <div class="page-sidebar-menu">
+                    <ul class="accordion-menu">
+
+                        <li>
+                            <a href="javascript:void(0);">
+                                <i class="menu-icon fa fa-search-plus"></i><span>Packages</span><i class="accordion-icon fa fa-angle-left"></i>
+                            </a>
+
+                            <ul class="sub-menu">
+                                <li><a href="/Package/List">List</a></li>
+                                <li><a href="/Package/Create">Create</a></li>
+                                <li><a href="/Package/PackageType">Pacakge Type</a></li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div><!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header">
+
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="javascript:void(0)" id="collapsed-sidebar-toggle-button"><i class="fa fa-bars"></i></a></li>
+                                <li><a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </nav>
+            </div><!-- /Page Header -->
+           
+            <div class="page-inner">
+                <div id="main-wrapper">
+                    <div class="row">
+                        @RenderBody()
+                    </div><!-- Row -->
+
+                    <div class="page-footer" id="footerMsg">
+                        <p>Made with <i class="fa fa-heart"></i> by techbinary</p>
+                    </div>
+                </div><!-- Main Wrapper -->
+                
+            </div><!-- /Page Inner -->
+            <div class="page-right-sidebar" id="main-right-sidebar">
+                <div class="page-right-sidebar-inner">
+                    <div class="right-sidebar-top">
+                        <div class="right-sidebar-tabs">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active" id="chat-tab"><a href="#chat" aria-controls="chat" role="tab" data-toggle="tab">chat</a></li>
+                                <li role="presentation" id="settings-tab"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">settings</a></li>
+                            </ul>
+                        </div>
+                        <a href="javascript:void(0)" class="right-sidebar-toggle right-sidebar-close" data-sidebar-id="main-right-sidebar"><i class="icon-close"></i></a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /Page Content -->
+    </div><!-- /Page Container -->
+    <!-- Javascripts -->
+    @RenderSection("scripts", required: false)
+    
+
+    <script src="~/plugins/jquery/jquery-3.1.0.min.js"></script>
+    <script src="~/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/plugins/uniform/js/jquery.uniform.standalone.js"></script>
+    <script src="~/plugins/switchery/switchery.min.js"></script>
+    <script src="~/js/space.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="~/js/JsCommonAjaxCall.js"></script>
+    <script src="~/js/summernote.min.js"></script>
+    <link href="~/css/summernote.min.css" rel="stylesheet" />
+    <link href="~/plugins/summernote-master/summernote.css" rel="stylesheet" />
+    <script src="~/plugins/summernote-master/summernote.min.js"></script>
+    <script src="~/plugins/summernote-master/summernote.js"></script>
+    <link href="~/plugins/summernote-master/summernote-bs2.css" rel="stylesheet" />
+    <link href="~/plugins/summernote-master/summernote-bs3.css" rel="stylesheet" />
+    
+
+
+</body>
+</html>

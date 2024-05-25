@@ -1,0 +1,131 @@
+﻿@using Backend.Models;
+@using NHIndiaAdminPanel.Models;
+
+@{
+    ViewBag.Title = "PackageType";
+}
+
+<style>
+    .edit-type:hover {
+        cursor: pointer;
+    }
+</style>
+
+<div class="page-title" id="scrollhere">
+    <h3 class="breadcrumb-header">Package Type</h3>
+</div>
+<div id="main-wrapper">
+
+    <div class="row">
+        @{
+            var PackageT = new NHIndiaAdminPanel.Models.PackageTypeEnt();
+            PackageT.PackageTypeId = 0;
+        }
+
+        <form method="post" action="/Package/SavePackageType">
+            <div class="col-md-3" >
+                <input id="packageTypeNameInput" name="PackageTypeName" class="form-control" placeholder="PackageType Name" />
+                <input type="hidden" id="PackageTypeId" name="PackageTypeId" value="0" /> <!-- Hidden input for PackageTypeId -->
+            </div>
+
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary" id="submitButton">Create</button>
+            </div>
+        </form>
+
+        <div class="col-md-12">
+            <br />
+            <div class="panel panel-white">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title">PackageType List</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>PackageType</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var PackageTypes = NHIndiaAdminPanel.Controllers.PackageController.GetPackageType();
+                                    int count = 1;
+                                }
+
+                                @if (PackageTypes.Count > 0)
+                                {
+                                    foreach (var d in PackageTypes)
+                                    {
+                                        <tr>
+                                            <td>@count</td>
+                                            <td>@d.PackageTypeName</td>
+                                            <!-- Call the editPackageType function with PackageTypeId and PackageTypeName -->
+                                            <td>
+                                                <a href="#scrollhere" onclick="editPackageType(event, '@d.PackageTypeId', '@d.PackageTypeName')" class="fa fa-edit edit-type"></a>
+                                            </td>
+
+                                        </tr>
+                                        count++;
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td>0</td>
+                                        <td colspan="3">Package types not available</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts{
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        var message = "@TempData["Message"]";
+        if (message) {
+            alert(message);
+            "@TempData.Remove("Message")";
+        }
+
+        function editPackageType(event, packageTypeId, packageTypeName) {
+            event.preventDefault(); // Prevent the default anchor behavior
+
+            $("#packageTypeNameInput").val(packageTypeName);
+            $("#PackageTypeId").val(packageTypeId);
+
+            var packageTypeIdValue = parseInt($("#PackageTypeId").val());
+            var submitButton = $("#submitButton");
+
+            if (packageTypeIdValue === 0) {
+                submitButton.text("Create");
+            } else {
+                submitButton.text("Update");
+            }
+
+            // Scroll to the top of the page
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
+    </script>
+
+}

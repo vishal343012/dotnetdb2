@@ -1,0 +1,279 @@
+﻿@model NHIndiaAdminPanel.Models.PackageDescriptionEnt
+
+@{
+    ViewBag.Title = "Description";
+    var packageId = ViewBag.PackageId;
+}
+
+<div id="main-wrapper">
+    <div class="">
+        @if (packageId != 0)
+        {
+            <div class="row" ng-if="isshowtabs">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills" role="tablist" id="Packagetabl">
+                        <li role="presentation" class=""><a href="/Package/Create?PackageId=@packageId">Basic Details</a></li>
+                        <li role="presentation" class="active"><a href="/Package/Description?PackageId=@packageId">Description</a></li>
+                        <li role="presentation" class=""><a href="/Package/CityMap?PackageId=@packageId"> Map</a></li>
+                        <li role="presentation" class=""><a href="/Package/Inclusion?PackageId=@packageId">Inclusion</a></li>
+                        <li role="presentation" class=""><a href="/Package/Price?PackageId=@packageId">Price</a></li>
+                        <li role="presentation" class=""><a href="/Package/Images?PackageId=@packageId">Images</a></li>
+                    </ul>
+                    <br>
+                </div>
+            </div>
+        }
+        <div class="page-title">
+            <h3 class="breadcrumb-header">Edit Description</h3>
+        </div>
+
+        <input type="hidden" id="packageId" value="@packageId" name="PackageId" />
+        <div id="descriptions-container" class="row">
+            <!-- Description items will be dynamically inserted here -->
+
+
+            
+
+
+
+
+        </div>
+        <br />
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary" onclick="addEmptyDescriptionsField()">Add Description</button>
+            <button type="button" class="btn btn-primary" id="submitButton" onclick="SaveDescriptions()">Save</button>
+            
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+
+        var data = [];
+        var descriptionsCount = 1;
+
+        document.addEventListener("DOMContentLoaded", function() 
+        {
+            const packageId = '@ViewBag.PackageId';
+            GetPackageDescriptions(packageId);
+        });
+
+
+
+        function GetPackageDescriptions(packageId)
+        {
+            $.ajax({
+                url: '/Package/GetPackageDescription?packageId=' + packageId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) 
+                {
+                    data = response.data;
+                    // console.log(response);
+                    generateDescriptionsField(data);
+                },
+                error: function (xhr, status, error) 
+                {
+                    console.error(error);
+                }
+            });
+        }
+
+        function addEmptyDescriptionsField() {
+            var newDiv = document.createElement('div');
+            newDiv.className = "col-md-12";
+            newDiv.id = "descriptions_" + descriptionsCount;
+
+            newDiv.innerHTML = `
+                <input type="hidden" name="DescriptionId" value="0" id="DescriptionId_${descriptionsCount}" />
+                <label>
+                    <input type="text" class="form-control" id="DescriptionName_${descriptionsCount}" name="DescriptionName" placeholder="Type Description Name" />
+                </label> &nbsp;
+                <button class="btn btn-danger" onclick="RemoveDescription(${descriptionsCount})">Remove-</button>
+                <textarea style="height: 200px; width: 99%;" name="Description" id="Description_${descriptionsCount}"></textarea>
+            `;
+
+            document.getElementById('descriptions-container').appendChild(newDiv);
+
+            descriptionsCount++;
+        }
+
+
+        function generateDescriptionsField(data) 
+        {
+            document.getElementById('descriptions-container').innerHTML = '';
+
+            if(data.length === 0) 
+            {
+                addEmptyDescriptionsField();
+            } 
+            else 
+            {
+                descriptionsCount = 1;
+                data.forEach(function (item) 
+                {
+                    var newDiv = document.createElement('div');
+                    newDiv.className = "col-md-12";
+                    newDiv.id = "descriptions_" + descriptionsCount;
+
+                    newDiv.innerHTML = `
+                        <input type="hidden" name="DescriptionId" value="${item.descriptionId}" id="DescriptionId_${descriptionsCount}" />
+                        <label>
+                            <input type="text" class="form-control" id="DescriptionName_${descriptionsCount}" name="DescriptionName" value="${item.descriptionName}" />
+                        </label> &nbsp;
+                        <button class="btn btn-danger" onclick="RemoveDescription(${descriptionsCount})">Remove-</button>
+                        <textarea style="height: 200px; width: 99%;" name="Description" id="Description_${descriptionsCount}">${item.description}</textarea>
+                    `;
+
+                    document.getElementById('descriptions-container').appendChild(newDiv);
+
+                    descriptionsCount++;
+                });
+            }
+        }
+
+        function RemoveDescription(id) {
+            var elementToRemove = document.getElementById("descriptions_" + id);
+            elementToRemove.parentNode.removeChild(elementToRemove);
+        }
+
+
+        // function SaveDescriptions() {
+
+        //     data = [];
+
+        //     for(var i = 1; i < descriptionsCount; i++) 
+        //     {
+        //         var element = document.getElementById("descriptions_" + i);
+        //         if (element !== null) 
+        //         {
+
+        //             var descriptionId = parseInt($("#DescriptionId_" + i).val());
+        //             var descriptionName = $("#DescriptionName_" + i).val();
+        //             var description = $("#Description_" + i).val();
+
+
+        //             if (isNaN(descriptionId)) descriptionId = 0;
+
+        //             var desc = { descriptionId: descriptionId, descriptionName: descriptionName, description: description};
+        //             data.push(desc);
+        //         }
+        //     }
+
+        //     pId = parseInt('@ViewBag.PackageId');
+        //     sData = {
+        //         packageId: pId,
+        //         data: data
+        //     }
+
+
+
+        //     // fetch('Package/SavePackageDescription', {
+        //     //     method: 'POST',
+        //     //     headers: {
+        //     //         'Content-Type': 'application/json'
+        //     //     },
+        //     //     body: JSON.stringify(sData)
+        //     // }).then(response => response.json()).then(data => 
+        //     //     {
+        //     //     if (data.success) 
+        //     //     {
+        //     //         console.log(data);
+        //     //         GetPackageDescriptions(pId);
+        //     //         alert(data.message);
+        //     //     } 
+        //     //     else 
+        //     //     {
+        //     //         alert(response.message);
+        //     //         console.error("Error: " + data.message);
+                    
+        //     //     }
+        //     // })
+        //     // .catch(error =>{
+        //     //     console.error('Error:', error);
+                
+        //     // });
+
+
+
+
+
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "/Package/SavePackageDescription",
+        //         data: JSON.stringify(sData),
+        //         contentType: "application/json; charset=utf-8",
+        //         dataType: "json",
+        //         success: function (response) 
+        //         {
+        //             if (response.success) 
+        //             {
+        //                 GetPackageDescriptions(pId);
+        //                 alert(response.message);
+                        
+        //             }
+        //             else 
+        //             {
+        //                 alert(response.message);
+        //             }
+        //         },
+        //         error: function (xhr, textStatus, errorThrown) {
+        //             console.log("Error occurred while saving data.");
+        //             console.log("Status:", textStatus);
+        //             console.log("Error:", errorThrown);
+        //         }
+        //     });
+
+
+        // }
+
+
+        function SaveDescriptions() {
+            var data = [];
+
+            for (var i = 1; i < descriptionsCount; i++) {
+                var element = document.getElementById("descriptions_" + i);
+                if (element !== null) {
+                    var descriptionId = parseInt($("#DescriptionId_" + i).val());
+                    var descriptionName = $("#DescriptionName_" + i).val();
+                    var description = $("#Description_" + i).val();
+
+                    if (isNaN(descriptionId)) descriptionId = 0;
+
+                    var desc = { descriptionId: descriptionId, descriptionName: descriptionName, description: description };
+                    data.push(desc);
+                }
+            }
+
+            var pId = parseInt('@ViewBag.PackageId');
+            var sData = {
+                packageId: pId,
+                data: data
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/Package/SavePackageDescription",
+                data: JSON.stringify(sData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.success) {
+                        GetPackageDescriptions(pId);
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("Error occurred while saving data.");
+                    console.log("Status:", textStatus);
+                    console.log("Error:", errorThrown);
+                }
+            });
+        }
+
+
+    </script>
+}

@@ -1,0 +1,333 @@
+﻿@{
+    ViewBag.Title = "Images";
+    var packageId = ViewBag.PackageId;
+    var packageImages = ViewBag.PackageImages as List<Dictionary<string, object>>;
+}
+
+<style>
+    #myModal1, #myModalEditText {
+        position: fixed;
+        top: 10%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+        z-index: 1050;
+        overflow: hidden;
+    }
+</style>
+
+<div>
+    <div class="">
+        @if (packageId != 0)
+        {
+            <div class="row" ng-if="isshowtabs">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills" role="tablist" id="Packagetabl">
+                        <li role="presentation"><a href="/Package/Create?PackageId=@packageId">Basic Details</a></li>
+                        <li role="presentation"><a href="/Package/Description?PackageId=@packageId">Description</a></li>
+                        <li role="presentation"><a href="/Package/CityMap?PackageId=@packageId">City Map</a></li>
+                        <li role="presentation"><a href="/Package/Inclusion?PackageId=@packageId">Inclusion</a></li>
+                        <li role="presentation"><a href="/Package/Price?PackageId=@packageId">Price</a></li>
+                        <li role="presentation" class="active"><a href="/Package/Images?PackageId=@packageId">Images</a></li>
+                    </ul>
+                    <br>
+                </div>
+            </div>
+        }
+        <div class="page-title">
+            <h3 class="breadcrumb-header">Images</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary" onclick="addImage()">Add Image+</button>
+                <br><br>
+            </div>
+
+            <!-- Modal -->
+            <div id="myModal1" class="" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" onclick="closeImage()">&times;</button>
+                            <h4 class="modal-title">Upload Image</h4>
+                        </div>
+                        <div class="modal-body">
+                            <label>Files</label>
+                            <input type="file" id="FileUpload1" class="form-control" multiple />
+                            <br>
+                            <label>Alternate Text</label>
+                            <input type="text" id="alternattext" class="form-control" />
+                            <br>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Image Name</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="imgName"></td>
+                                        <td id="imgStatus"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="saveimgbtn" class="btn btn-success" onclick="SaveImage()">Save Image</button>
+                            <button type="button" class="btn btn-default" onclick="closeImage()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Thumbnail/BannerImage</th>
+                            <th>Alternate Text</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (packageImages != null)
+                        {
+                            foreach (var image in packageImages)
+                            {
+                                <tr>
+                                    <td>
+                                        @* <img src="~/img/sidebannerdesert.jpg" /> *@
+                                        @* <img height="100" width="100" src="https://d5ohkitzini5f.cloudfront.net/@image["Path"]" /> *@
+                                        <img height="100" width="100" src="/img/@image["Path"]" />
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="setAsFrontImage(@image["ImageId"])">@((int)image["IsFrontImage"] == 1 ? "Thumbnail" : "Set as Thumbnail")</button>
+                                        <button class="btn btn-primary" onclick="setAsBannerImage(@image["ImageId"])">@((int)image["IsFrontImage"] == 2 ? "BannerImage" : "Set as Banner")</button>
+                                    </td>
+                                    <td>@image["AlternateText"]</td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="openEditText(@image["ImageId"], '@image["AlternateText"]')">Add Text</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" onclick="deleteImage(@image["ImageId"])">Delete</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="myModalEditText">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" onclick="closeEditText()">&times;</button>
+                            <h4 class="modal-title">Edit Alternate Text</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="imageId" />
+                            <label>Alternate Text</label>
+                            <input type="text" id="alternattext1" class="form-control" />
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="saveEditText()">Save Text</button>
+                            <button type="button" class="btn btn-default" onclick="closeEditText()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row -->
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function closeImage() {
+            var myModalImg = document.getElementById("myModal1");
+            myModalImg.style.display = "none";
+        }
+
+        function addImage() {
+            var myModalImg = document.getElementById("myModal1");
+            myModalImg.style.display = "block";
+        }
+
+        function openEditText(imageId, alternateText) 
+        {
+            document.getElementById('imageId').value = imageId;
+            document.getElementById('alternattext1').value = alternateText;
+            var myModalEditText = document.getElementById("myModalEditText");
+            myModalEditText.style.display = "block";
+        }
+
+        function closeEditText() {
+            var myModalEditText = document.getElementById("myModalEditText");
+            myModalEditText.style.display = "none";
+        }
+
+        function saveEditText() {
+            var imageId = document.getElementById('imageId').value;
+            var alternateText = document.getElementById('alternattext1').value;
+
+            $.ajax({
+                url: '/Package/UpdateAlternateText',
+                type: 'POST',
+                data: {
+                    imageId: imageId,
+                    alternateText: alternateText
+                },
+                success: function (response) {
+                    if (response.status === 1) {
+                        alert('Alternate text updated successfully');
+                        closeEditText();
+                        location.reload();
+                    } else {
+                        alert('Failed to update alternate text');
+                    }
+                },
+                error: function () {
+                    alert('An error occurred while updating alternate text');
+                }
+            });
+        }
+
+        function SaveImage() {
+            var fileInput = document.getElementById('FileUpload1');
+            var files = fileInput.files;
+            var formData = new FormData();
+            formData.append('packageId', '@ViewBag.PackageId');
+            formData.append('alternatetext', document.getElementById('alternattext').value);
+
+            for (var i = 0; i < files.length; i++) {
+                formData.append('files', files[i]);
+            }
+            $('#saveimgbtn').prop('disabled', true);
+            $.ajax({
+                url: '/Package/UploadFiles',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    $('#imgStatus').text('Please wait..').css('color', 'blue');
+                    $('#imgName').text(files[0].name);
+                },
+                success: function (response) {
+                    setTimeout(function () {
+                        console.log(response);
+                        if (response.status === 1) {
+                            $('#imgStatus').text('File Uploaded Successfully!').css('color', 'green');
+                            setTimeout(function () {
+                                closeImage();
+                                window.location.reload();
+                            }, 1000); // Wait for 1 second before closing and refreshing
+
+                        } 
+                        else {
+                            $('#imgStatus').text(response.message).css('color', 'red');
+                        }
+                        $('#saveimgbtn').prop('disabled', false);
+                    }, 2000);
+                },
+                error: function (xhr, status, error) {
+                    $('#imgStatus').text('Something went wrong, please try again later!').css('color', 'red');
+                    $('#saveimgbtn').prop('disabled', false);
+                }
+            });
+        }
+
+
+        function deleteImage(imageId) {
+            var confirmation = confirm('Are you sure you want to delete this image?');
+            if (!confirmation) {
+                return;
+            }
+            $.ajax({
+                url: '/Package/ImageAction',
+                type: 'GET',
+                data: { ImageId: imageId, imageAction: 'DELETE' },
+                success: function (response) 
+                {
+                   
+                    if (response.status === 1)
+                    {
+                        alert(response.message);
+                        location.reload();
+                    }
+                    else {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('An error occurred: ' + error);
+                }
+            });
+        }
+
+        function setAsFrontImage(imageId) {
+            var confirmation = confirm('Are you sure you want to set As FrontImage?');
+            if (!confirmation) {
+                return;
+            }
+            $.ajax({
+                url: '/Package/ImageAction',
+                type: 'GET',
+                data: { ImageId: imageId, imageAction: 'FRONTIMAGE' },
+                success: function (response) 
+                {
+                    if (response.status === 1) 
+                    {
+                        alert(response.message);
+                        location.reload(); // Reload the page to reflect changes
+                    }
+                    else 
+                    {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('An error occurred: ' + error);
+                }
+            });
+        }
+
+        function setAsBannerImage(imageId) {
+            var confirmation = confirm('Are you sure you want to set As BannerImage?');
+            if (!confirmation) {
+                return;
+            }
+            $.ajax({
+                url: '/Package/ImageAction',
+                type: 'GET',
+                data: { ImageId: imageId, imageAction: 'BANNERIMAGE' },
+                success: function (response) 
+                {
+                    if (response.status === 1) 
+                    {
+                        alert(response.message);
+                        location.reload();
+                    } 
+                    else 
+                    {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('An error occurred: ' + error);
+                }
+            });
+        }
+
+
+
+    </script>
+}

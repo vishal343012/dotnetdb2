@@ -1,0 +1,95 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = NHIndiaAdminPanel
+build_property.RootNamespace = NHIndiaAdminPanel
+build_property.ProjectDir = F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = F:\NextHolidaysIndia\AdminPanel\NHIndiaAdmin\NHIndiaAdminPanel\NHIndiaAdminPanel
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Login/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSG9tZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/backup/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxiYWNrdXBcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/backup/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxiYWNrdXBcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/backup/PackageType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxiYWNrdXBcUGFja2FnZVR5cGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/CityMap.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxDaXR5TWFwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/Description.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxEZXNjcmlwdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/Images.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxJbWFnZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/Inclusion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxJbmNsdXNpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/PackageType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxQYWNrYWdlVHlwZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Package/Price.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxQcmljZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/NextHolidaysIndia/AdminPanel/NHIndiaAdmin/NHIndiaAdminPanel/NHIndiaAdminPanel/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-r1i36x2f2h
